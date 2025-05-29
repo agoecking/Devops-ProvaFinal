@@ -10,9 +10,9 @@ services:
       - app-networks
 
 #changed port to 5050. mac was having trouble using 5000
-  flask_api:
+  orders:
     build: ./api-python
-    container_name: flask_api
+    container_name: orders
     ports:
       - "5050:5050"
     volumes:
@@ -23,16 +23,16 @@ services:
     networks:
       - app-networks
 
-  node_api:
+  products:
     build: ./api-node
-    container_name: api-node
+    container_name: products
     ports:
       - "3001:3001"
     volumes:
       - "./api-node:/app"
       - "/app/node_modules"
     depends_on:
-      - "flask_api"
+      - "orders"
     networks:
       - app-networks
 

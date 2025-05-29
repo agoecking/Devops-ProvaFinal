@@ -3,7 +3,7 @@
 $request_uri = $_SERVER['REQUEST_URI'];
 
 if ($request_uri === '/payment') {
-    $orderJson = file_get_contents('http://orders:3002/order');
+    $orderJson = file_get_contents('http://orders:5050/order');
     $orderData = json_decode($orderJson, true);
 
     $response = [
