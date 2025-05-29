@@ -9,13 +9,14 @@ services:
     networks:
       - app-networks
 
+#changed port to 5050. mac was having trouble using 5000
   flask_api:
-    build: ./python-api
+    build: ./api-python
     container_name: flask_api
     ports:
-      - "5000:5000"
+      - "5050:5050"
     volumes:
-      - "./python-api:/app"
+      - "./api-python:/app"
     command: "python app.py"
     depends_on:
       - "dbmysql"
@@ -23,12 +24,12 @@ services:
       - app-networks
 
   node_api:
-    build: ./node-api
-    container_name: node_api
+    build: ./api-node
+    container_name: api-node
     ports:
-      - "3000:3000"
+      - "3001:3001"
     volumes:
-      - "./node-api:/app"
+      - "./api-node:/app"
       - "/app/node_modules"
     depends_on:
       - "flask_api"
@@ -36,14 +37,14 @@ services:
       - app-networks
 
   php-app:
-    build: ./php
+    build: ./api-php
     container_name: php_app
     ports:
-      - "8000:8000"
+      - "8000:3003"
     volumes:
-      - ./php:/app
+      - ./api-php:/app
     working_dir: /app
-    command: php -S 0.0.0.0:8000
+    command: php -S 0.0.0.0:3003
     networks:
       - app-networks
 
