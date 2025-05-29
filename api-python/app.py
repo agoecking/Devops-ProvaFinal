@@ -36,4 +36,4 @@ def create_order():
         "total_price": product['price'] * 2
     })
 
-app.run(host='0.0.0.0', port=3002)
+app.run(host='0.0.0.0', port=3001)
