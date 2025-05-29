@@ -1,13 +1,15 @@
 services:
   dbmysql:
     image: mysql:8.0
-    environment: 
+    environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: flaskdb
     ports:
       - "3307:3306"
     networks:
       - app-networks
+
+  #
 
 #changed port to 5050. mac was having trouble using 5000
   orders:
@@ -47,7 +49,8 @@ services:
     command: php -S 0.0.0.0:3003
     networks:
       - app-networks
-
+    depends_on: # Add this section
+      - "orders" # To ensure 'orders' starts before 'php-app'
 
 networks:
   app-networks:
