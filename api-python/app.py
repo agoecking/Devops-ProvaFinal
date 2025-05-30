@@ -19,7 +19,7 @@ def create_order():
     db = mysql.connector.connect(
         host="dbmysql",
         user="root",
-        password="example",
+        password="root",
         database="flaskdb"
     )
     cursor = db.cursor()
