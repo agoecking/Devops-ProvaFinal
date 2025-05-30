@@ -17,10 +17,10 @@ def create_order():
         cache.set('product', str(product))
 
     db = mysql.connector.connect(
-        host="db",
+        host="dbmysql",
         user="root",
         password="example",
-        database="ecommerce"
+        database="flaskdb"
     )
     cursor = db.cursor()
     cursor.execute("CREATE TABLE IF NOT EXISTS orders (id INT AUTO_INCREMENT PRIMARY KEY, product_id INT, quantity INT, total_price INT)")
